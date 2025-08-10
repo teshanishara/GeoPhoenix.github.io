@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoPhoenix - Contact Teshan Ishara</title>
+    <style>
+        /* ---------------------------
+           Base Styles & Global Settings
+           --------------------------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* ---------------------------
+           Header: Enhanced with Glassmorphism
+           --------------------------- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(229, 57, 53, 0.2);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        header:hover {
+            background: rgba(0, 0, 0, 0.98);
+            transform: translateY(-2px);
+        }
+        
+        /* Enhanced Logo with Animation */
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #e53935, #ef5350);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-weight: bold;
+            color: white;
+            margin-right: 15px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(229, 57, 53, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .logo:hover .logo-icon::before {
+            transform: translateX(100%);
+        }
+        
+        .logo:hover .logo-icon {
+            transform: rotate(5deg) scale(1.1);
+            box-shadow: 0 12px 35px rgba(229, 57, 53, 0.4);
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #e53935, #ffab91);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Enhanced Navigation */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+        
+        .nav-menu li {
+            position: relative;
+        }
+        
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            padding: 12px 20px;
+            position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+        
+        .nav-menu a.active {
+            color: #e53935;
+            background: rgba(229, 57, 53, 0.1);
+        }
+        
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(229, 57, 53, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .nav-menu a:hover::before {
+            left: 100%;
+        }
+        
+        .nav-menu a:hover {
+            color: #e53935;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: linear-gradient(135deg, #e53935, #ef5350);
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(229, 57, 53, 0.3);
+        }
+        
+        /* ---------------------------
+           Contact Section
+           --------------------------- */
+        .contact-section {
+            margin-top: 50px;
+            padding: 60px 0;
+        }
+        
+        .contact-header {
+            text-align: center;
+            margin-bottom: 80px;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .contact-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #e53935, #ffab91, #81c784);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 10px rgba(229, 57, 53, 0.3));
+            }
+            to {
+                filter: drop-shadow(0 0 20px rgba(229, 57, 53, 0.6));
+            }
+        }
+        
+        .contact-header p {
+            font-size: 1.3rem;
+            color: #E3F2FD;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        /* Contact Content Grid */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+            animation: slideInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Contact Information */
+        .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 50px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(229, 57, 53, 0.05), transparent);
+            transition: left 0.8s;
+        }
+        
+        .contact-info:hover::before {
+            left: 100%;
+        }
+        
+        .contact-info:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(229, 57, 53, 0.3);
+        }
+        
+        .contact-info h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #e53935, #ffab91);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .contact-method:last-child {
+            border-bottom: none;
+        }
+        
+        .contact-method:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(10px);
+            padding-left: 30px;
+        }
+        
+        .contact-method .method-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.5rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-method:hover .method-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .whatsapp .method-icon {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+        }
+        
+        .linkedin .method-icon {
+            background: linear-gradient(135deg, #0077B5, #005885);
+            box-shadow: 0 8px 25px rgba(0, 119, 181, 0.3);
+        }
+        
+        .email .method-icon {
+            background: linear-gradient(135deg, #EA4335, #D33B2C);
+            box-shadow: 0 8px 25px rgba(234, 67, 53, 0.3);
+        }
+        
+        .method-details h3 {
+            color: #81c784;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .method-details p {
+            color: #E3F2FD;
+            font-size: 1rem;
+        }
+        
+        .method-details a {
+            color: #e53935;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .method-details a:hover {
+            color: #ffab91;
+        }
+        
+        /* Contact Form */
+        .contact-form-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 50px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(129, 199, 132, 0.05), transparent);
+            transition: left 0.8s;
+        }
+        
+        .contact-form-container:hover::before {
+            left: 100%;
+        }
+        
+        .contact-form-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(129, 199, 132, 0.3);
+        }
+        
+        .contact-form h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #81c784, #66bb6a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #81c784;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: rgba(229, 57, 53, 0.5);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(229, 57, 53, 0.2);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #e53935, #ef5350);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.4s;
+        }
+        
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(229, 57, 53, 0.4);
+        }
+        
+        /* Quick Contact Section */
+        .quick-contact {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            padding: 60px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 60px;
+            text-align: center;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both;
+        }
+        
+        .quick-contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #e53935, #ffab91);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .quick-contact p {
+            font-size: 1.2rem;
+            color: #E3F2FD;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .quick-contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .quick-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+        
+        .quick-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: left 0.4s;
+        }
+        
+        .quick-btn:hover::before {
+            left: 100%;
+        }
+        
+        .quick-btn:hover {
+            transform: translateY(-5px);
+        }
+        
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+        }
+        
+        .whatsapp-btn:hover {
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.4);
+        }
+        
+        .linkedin-btn {
+            background: linear-gradient(135deg, #0077B5, #005885);
+            color: white;
+        }
+        
+        .linkedin-btn:hover {
+            box-shadow: 0 15px 40px rgba(0, 119, 181, 0.4);
+        }
+        
+        .email-btn {
+            background: linear-gradient(135deg, #EA4335, #D33B2C);
+            color: white;
+        }
+        
+        .email-btn:hover {
+            box-shadow: 0 15px 40px rgba(234, 67, 53, 0.4);
+        }
+        
+        /* Response Time Section */
+        .response-section {
+            background: rgba(129, 199, 132, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(129, 199, 132, 0.2);
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.9s both;
+        }
+        
+        .response-section h3 {
+            font-size: 1.8rem;
+            color: #81c784;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .response-section i {
+            font-size: 2rem;
+        }
+        
+        .response-section p {
+            color: #E3F2FD;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Availability Status */
+        .availability-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(129, 199, 132, 0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-top: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            background: #81c784;
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+        
+        .status-text {
+            color: #81c784;
+            font-weight: 600;
+        }
+        
+        /* ---------------------------
+           Responsive Design
+           --------------------------- */
+        @media (max-width: 992px) {
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .contact-header h1 {
+                font-size: 2.8rem;
+            }
+            
+            .quick-contact-buttons {
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 30px 0;
+                border-radius: 0 0 20px 20px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+                gap: 0;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .contact-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .quick-contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .quick-btn {
+                width: 250px;
+                justify-content: center;
+            }
+            
+            .contact-info,
+            .contact-form-container,
+            .quick-contact,
+            .response-section {
+                padding: 40px 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .contact-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .contact-method {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .contact-method .method-icon {
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="logo">
+                <div class="logo-icon">G</div>
+                <div class="logo-text">Geo<span style="color: #81c784;">Phoenix</span></div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="#contact" class="active">Contact</a></li>
+            </ul>
+        </header>
+        
+        <!-- Contact Section -->
+        <div class="contact-section">
+            <!-- Contact Header -->
+            <div class="contact-header">
+                <h1>Get In Touch</h1>
+                <p>Ready to start your next geospatial project? Let's discuss how we can transform your data into actionable insights and drive your research forward.</p>
+                
+                <div class="availability-status">
+                    <div class="status-dot"></div>
+                    <span class="status-text">Available for new projects</span>
+                </div>
+            </div>
+            
+            <!-- Contact Content -->
+            <div class="contact-content">
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <h2>
+                        <i class="fas fa-address-book"></i>
+                        Contact Information
+                    </h2>
+                    
+                    <div class="contact-method whatsapp" onclick="openWhatsApp()">
+                        <div class="method-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="method-details">
+                            <h3>WhatsApp</h3>
+                            <p>+94 71 529 8267</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method linkedin" onclick="openLinkedIn()">
+                        <div class="method-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <div class="method-details">
+                            <h3>LinkedIn</h3>
+                            <p><a href="https://www.linkedin.com/in/teshan-ishara-80b9bb156" target="_blank">teshan-ishara-80b9bb156</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method email" onclick="openEmail()">
+                        <div class="method-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="method-details">
+                            <h3>Email</h3>
+                            <p><a href="mailto:teshan.ishara@gmail.com">teshan.ishara@gmail.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contactForm">
+                        <h2>
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </h2>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="serviceType">Service Interest</label>
+                            <select id="serviceType" name="serviceType" required>
+                                <option value="">Select a service...</option>
+                                <option value="starter">Starter Package ($10)</option>
+                                <option value="intermediate">Intermediate Package ($20)</option>
+                                <option value="pro">Pro Package ($30)</option>
+                                <option value="custom">Custom Project</option>
+                                <option value="consultation">Consultation</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="projectDetails">Project Details</label>
+                            <textarea id="projectDetails" name="projectDetails" placeholder="Tell me about your project requirements, data sources, expected deliverables, and timeline..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-rocket"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Quick Contact Section -->
+            <div class="quick-contact">
+                <h2>Prefer Direct Contact?</h2>
+                <p>Choose your preferred communication method for instant connection. I'm always ready to discuss your project needs and provide quick responses.</p>
+                
+                <div class="quick-contact-buttons">
+                    <a href="https://wa.me/94715298267" target="_blank" class="quick-btn whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        Chat on WhatsApp
+                    </a>
+                    <a href="https://www.linkedin.com/in/teshan-ishara-80b9bb156" target="_blank" class="quick-btn linkedin-btn">
+                        <i class="fab fa-linkedin-in"></i>
+                        Connect
