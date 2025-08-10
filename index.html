@@ -1,165 +1,826 @@
-<!DOCTYPE html>
+<div class="logo-text">Geo<span style="color: #81c784;">Phoenix</span></div><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeoPhoenix | Geospatial & Data Analysis</title>
+    <title>GeoPhoenix - Professional Portfolio</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* ---------------------------
+           Base Styles & Global Settings
+           --------------------------- */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #0B1B2B; /* Dark navy */
-            color: #EAEAEA;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        header {
-            background-color: #003366; /* Deep Blue */
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        header img {
-            max-width: 120px;
-            border-radius: 50%;
-            border: 3px solid #FF6F00;
-        }
-        header h1 {
-            margin-top: 20px;
-            font-size: 2.5em;
-            color: #FF6F00; /* Flame Orange */
-        }
-        header p {
-            font-size: 1.2em;
-            color: #2A9D8F; /* Earth Green */
-        }
-        nav {
-            background-color: #1B2F46;
-            text-align: center;
-            padding: 12px;
-        }
-        nav a {
-            color: #EAEAEA;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        nav a:hover {
-            color: #FF6F00;
-        }
-        section {
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: auto;
-        }
-        .section-title {
-            color: #FF6F00;
-            margin-bottom: 20px;
-            font-size: 2em;
-            text-align: center;
-        }
-        .services, .projects {
+        
+        .container {
+            width: 85%;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: 100vh;
             display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
+            flex-direction: column;
+        }
+        
+        /* ---------------------------
+           Header: Enhanced with Glassmorphism
+           --------------------------- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            background: rgba(229, 57, 53, 0.15);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(229, 57, 53, 0.2);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        header:hover {
+            background: rgba(229, 57, 53, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Enhanced Logo with Animation */
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #e53935, #ef5350);
+            display: flex;
+            align-items: center;
             justify-content: center;
-        }
-        .card {
-            background-color: #1B2F46;
-            padding: 20px;
-            border-radius: 8px;
-            width: 260px;
-            text-align: center;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        footer {
-            background-color: #003366;
+            border-radius: 12px;
+            font-weight: bold;
             color: white;
-            text-align: center;
-            padding: 20px;
+            margin-right: 15px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(229, 57, 53, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .logo:hover .logo-icon::before {
+            transform: translateX(100%);
+        }
+        
+        .logo:hover .logo-icon {
+            transform: rotate(5deg) scale(1.1);
+            box-shadow: 0 12px 35px rgba(229, 57, 53, 0.4);
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #e53935, #ffab91);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Enhanced Navigation */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+        
+        .nav-menu li {
+            position: relative;
+        }
+        
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            padding: 12px 20px;
+            position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+        
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(229, 57, 53, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .nav-menu a:hover::before {
+            left: 100%;
+        }
+        
+        .nav-menu a:hover {
+            color: #e53935;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: linear-gradient(135deg, #e53935, #ef5350);
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(229, 57, 53, 0.3);
+        }
+        
+        /* ---------------------------
+           Main Content with Enhanced Animations
+           --------------------------- */
+        .main-content {
+            display: flex;
+            flex: 1;
+            margin-top: 80px;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .left-column {
+            width: 50%;
+            animation: slideInLeft 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .intro h1 {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #e53935, #ffab91, #81c784);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 10px rgba(229, 57, 53, 0.3));
+            }
+            to {
+                filter: drop-shadow(0 0 20px rgba(229, 57, 53, 0.6));
+            }
+        }
+        
+        .intro p {
+            color: #E3F2FD;
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .contact-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #e53935, #ef5350);
+            color: white;
+            text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(229, 57, 53, 0.3);
+            margin-bottom: 40px;
+        }
+        
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .contact-btn:hover::before {
+            left: 100%;
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(229, 57, 53, 0.4);
+        }
+        
+        /* Enhanced Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 25px;
             margin-top: 40px;
         }
-        a {
-            color: #2A9D8F;
+        
+        .social-icons a {
+            color: #B0BEC5;
+            font-size: 1.8rem;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 15px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
         }
-        a:hover {
-            color: #FF6F00;
+        
+        .social-icons a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(229, 57, 53, 0.2), transparent);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translate(-50%, -50%);
+        }
+        
+        .social-icons a:hover::before {
+            width: 100px;
+            height: 100px;
+        }
+        
+        .social-icons a:hover {
+            color: #e53935;
+            transform: translateY(-8px) scale(1.2);
+            box-shadow: 0 15px 35px rgba(229, 57, 53, 0.3);
+            background: rgba(229, 57, 53, 0.1);
+        }
+        
+        /* Right Column - Enhanced Profile */
+        .right-column {
+            width: 50%;
+            position: relative;
+            animation: slideInRight 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .profile-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .profile-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, #e53935, #81c784, #e53935);
+            animation: rotate 4s linear infinite;
+            z-index: -1;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .profile-container::after {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 17px;
+            z-index: -1;
+        }
+        
+        .profile-container:hover {
+            transform: scale(1.02);
+        }
+        
+        .profile-image {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            display: block;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* ---------------------------
+           Enhanced Sections
+           --------------------------- */
+        .new-sections {
+            margin-top: 100px;
+            padding-top: 60px;
+            border-top: 1px solid rgba(229, 57, 53, 0.3);
+        }
+        
+        .section {
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.4s; }
+        .section:nth-child(4) { animation-delay: 0.6s; }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #e53935, #ffab91);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #e53935, #ef5350);
+            border-radius: 2px;
+        }
+        
+        .section-description {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-description::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(229, 57, 53, 0.05), transparent);
+            transition: left 0.8s;
+        }
+        
+        .section-description:hover::before {
+            left: 100%;
+        }
+        
+        .section-description:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+            border-color: rgba(229, 57, 53, 0.3);
+        }
+        
+        .animated-icon {
+            display: inline-block;
+            margin-right: 15px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #e53935;
+            font-size: 2rem;
+            filter: drop-shadow(0 0 10px rgba(229, 57, 53, 0.3));
+        }
+        
+        .animated-icon:hover {
+            transform: scale(1.3) rotate(10deg);
+            filter: drop-shadow(0 0 20px rgba(229, 57, 53, 0.6));
+        }
+        
+        /* ---------------------------
+           Enhanced Footer
+           --------------------------- */
+        .footer {
+            margin-top: 100px;
+            border-top: 1px solid rgba(129, 199, 132, 0.3);
+            padding: 60px 0 30px;
+            background: linear-gradient(135deg, rgba(129, 199, 132, 0.1), rgba(26, 26, 46, 0.1));
+            backdrop-filter: blur(20px);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            gap: 40px;
+        }
+        
+        .footer-logo .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #81c784, #a5d6a7);
+            box-shadow: 0 8px 25px rgba(129, 199, 132, 0.3);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .footer-links a {
+            color: #B0BEC5;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            position: relative;
+        }
+        
+        .footer-links a:hover {
+            color: #81c784;
+            background: rgba(129, 199, 132, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .footer-social a {
+            color: #B0BEC5;
+            font-size: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-social a:hover {
+            color: #81c784;
+            transform: translateY(-5px) scale(1.2);
+            box-shadow: 0 10px 30px rgba(129, 199, 132, 0.3);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(129, 199, 132, 0.2);
+            color: #90A4AE;
+            font-size: 0.9rem;
+        }
+        
+        /* ---------------------------
+           Responsive Design
+           --------------------------- */
+        @media (max-width: 992px) {
+            .main-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+            .left-column, .right-column {
+                width: 100%;
+            }
+            .intro h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(26, 26, 46, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 30px 0;
+                border-radius: 0 0 20px 20px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+                gap: 0;
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .nav-menu li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .intro h1 {
+                font-size: 2.2rem;
+            }
+            .social-icons {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-links ul {
+                justify-content: center;
+            }
+            .footer-social {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="logo">
+                <div class="logo-icon">G</div>
+                <div class="logo-text">Geo<span style="color: #42A5F5;">Phoenix</span></div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
 
-<header>
-    <img src="profile.jpg" alt="Founder Photo">
-    <h1>GeoPhoenix</h1>
-    <p>Rising above challenges with powerful geospatial and data-driven insights</p>
-</header>
-
-<nav>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-</nav>
-
-<section id="about">
-    <h2 class="section-title">About GeoPhoenix</h2>
-    <p>
-        GeoPhoenix was founded by <strong>Teshan Ishara</strong>, a specialist in geospatial and data analysis.
-        Like the Phoenix, our brand symbolizes resilience and transformation — turning complex Earth data into
-        actionable insights for governments, NGOs, and research teams worldwide.
-    </p>
-    <img src="logo.png" alt="GeoPhoenix Logo" style="display:block;margin:20px auto;max-width:200px;">
-</section>
-
-<section id="services">
-    <h2 class="section-title">Our Services</h2>
-    <div class="services">
-        <div class="card">
-            <h3>Geospatial Analysis</h3>
-            <p>Satellite imagery processing, land cover classification, and environmental mapping.</p>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </header>
+        
+        <!-- Main Content Section -->
+        <div class="main-content">
+            <div class="left-column">
+                <div class="intro">
+                    <h1>Hi, I'm GeoPhoenix</h1>
+                    <p>
+                        A passionate geospatial analyst and environmental enthusiast, blending cutting-edge technology, data science, and creative solutions to drive sustainable innovations for our planet. I specialize in transforming complex geographic data into actionable insights for environmental conservation and sustainable development.
+                    </p>
+                    <a href="#contact" class="contact-btn">Let's Connect</a>
+                </div>
+                
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/teshan-ishara-80b9bb156" title="LinkedIn" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/geophoenix" title="GitHub" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:teshan.ishara@gmail.com" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="#" title="Portfolio">
+                        <i class="fas fa-globe"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="right-column">
+                <div class="profile-container">
+                    <img src="images/profile.jpg" alt="GeoPhoenix - Geospatial Analyst" class="profile-image">
+                </div>
+            </div>
         </div>
-        <div class="card">
-            <h3>Data Analysis</h3>
-            <p>Predictive modeling, statistical analysis, and data visualization with Python & R.</p>
+
+        <!-- Enhanced Sections -->
+        <div class="new-sections">
+            <div class="section" id="about">
+                <h2 class="section-title">Geospatial Expertise</h2>
+                <div class="section-description">
+                    <i class="fas fa-globe-americas animated-icon"></i>
+                    <p>
+                        Specializing in advanced GIS analysis, remote sensing, and spatial data visualization. I leverage cutting-edge tools like ArcGIS, QGIS, and Google Earth Engine to solve complex environmental challenges and create innovative mapping solutions that drive decision-making for sustainable development projects.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Environmental Innovation</h2>
+                <div class="section-description">
+                    <i class="fas fa-leaf animated-icon"></i>
+                    <p>
+                        Passionate about environmental conservation and climate change mitigation. I develop data-driven solutions for ecosystem monitoring, biodiversity assessment, and environmental impact analysis, helping organizations make informed decisions for a more sustainable future.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section" id="services">
+                <h2 class="section-title">Technical Solutions</h2>
+                <div class="section-description">
+                    <i class="fas fa-cogs animated-icon"></i>
+                    <p>
+                        Combining expertise in Python, R, JavaScript, and SQL with geospatial technologies to create custom analytical tools, interactive web maps, and automated workflows. From satellite imagery analysis to predictive modeling, I deliver comprehensive solutions tailored to client needs.
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="card">
-            <h3>Disaster Risk Mapping</h3>
-            <p>Flood hazard mapping, vulnerability analysis, and early warning systems.</p>
-        </div>
+
+        <!-- Footer Section -->
+        <footer class="footer" id="contact">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-icon">G</div>
+                    <div class="logo-text">Geo<span style="color: #42A5F5;">Phoenix</span></div>
+                </div>
+                
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="mailto:teshan.ishara@gmail.com">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/teshan-ishara-80b9bb156" title="LinkedIn" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/geophoenix" title="GitHub" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:teshan.ishara@gmail.com" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="#" title="Portfolio">
+                        <i class="fas fa-globe"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 GeoPhoenix. All Rights Reserved.</p>
+                <p>Geospatial Analyst | Environmental Enthusiast | Data Scientist</p>
+            </div>
+        </footer>
     </div>
-</section>
+    
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script>
+        // Enhanced Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
 
-<section id="projects">
-    <h2 class="section-title">Featured Projects</h2>
-    <div class="projects">
-        <div class="card">
-            <h3>Bigeye Tuna CPUE Prediction</h3>
-            <p>Predictive modeling for fisheries management using GAM and satellite ocean data.</p>
-        </div>
-        <div class="card">
-            <h3>Flood Risk Mapping - Baling, Kedah</h3>
-            <p>Risk zonation maps for disaster preparedness using multi-criteria analysis.</p>
-        </div>
-        <div class="card">
-            <h3>3D Terrain Map - Edo State</h3>
-            <p>High-resolution terrain visualization for infrastructure planning.</p>
-        </div>
-    </div>
-</section>
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.style.transform = navMenu.classList.contains('active') 
+                ? 'rotate(90deg)' : 'rotate(0deg)';
+        });
 
-<section id="contact">
-    <h2 class="section-title">Contact Us</h2>
-    <p>Email: <a href="mailto:teshan.ishara@gmail.com">teshan.ishara@gmail.com</a></p>
-    <p>LinkedIn: <a href="www.linkedin.com/in/teshan-ishara-80b9bb156" target="_blank">Linkedin Profile</a></p>
-</section>
+        // Smooth Scroll for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    navMenu.classList.remove('active');
+                    mobileMenuBtn.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
 
-<footer>
-    <p>&copy; 2025 GeoPhoenix. All Rights Reserved.</p>
-</footer>
+        // Enhanced Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for scroll animations
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Dynamic Header Background on Scroll
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100) {
+                header.style.background = 'rgba(255, 111, 0, 0.25)';
+                header.style.boxShadow = '0 10px 40px rgba(0, 0, 0, 0.2)';
+            } else {
+                header.style.background = 'rgba(255, 111, 0, 0.15)';
+                header.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.1)';
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Add parallax effect to profile image
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const profileContainer = document.querySelector('.profile-container');
+            if (profileContainer) {
+                profileContainer.style.transform = `translateY(${scrolled * 0.1}px)`;
+            }
+        });
+    </script>
 </body>
 </html>
