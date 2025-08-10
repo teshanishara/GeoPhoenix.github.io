@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoPhoenix - Services & Pricing</title>
+    <style>
+        /* ---------------------------
+           Base Styles & Global Settings
+           --------------------------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* ---------------------------
+           Header: Enhanced with Glassmorphism
+           --------------------------- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(229, 57, 53, 0.2);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        header:hover {
+            background: rgba(0, 0, 0, 0.98);
+            transform: translateY(-2px);
+        }
+        
+        /* Enhanced Logo with Animation */
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #e53935, #ef5350);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-weight: bold;
+            color: white;
+            margin-right: 15px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(229, 57, 53, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .logo:hover .logo-icon::before {
+            transform: translateX(100%);
+        }
+        
+        .logo:hover .logo-icon {
+            transform: rotate(5deg) scale(1.1);
+            box-shadow: 0 12px 35px rgba(229, 57, 53, 0.4);
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #e53935, #ffab91);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Enhanced Navigation */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+        
+        .nav-menu li {
+            position: relative;
+        }
+        
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            padding: 12px 20px;
+            position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+        
+        .nav-menu a.active {
+            color: #e53935;
+            background: rgba(229, 57, 53, 0.1);
+        }
+        
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(229, 57, 53, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .nav-menu a:hover::before {
+            left: 100%;
+        }
+        
+        .nav-menu a:hover {
+            color: #e53935;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: linear-gradient(135deg, #e53935, #ef5350);
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(229, 57, 53, 0.3);
+        }
+        
+        /* ---------------------------
+           Services Section
+           --------------------------- */
+        .services-section {
+            margin-top: 50px;
+            padding: 60px 0;
+        }
+        
+        .services-header {
+            text-align: center;
+            margin-bottom: 80px;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .services-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #e53935, #ffab91, #81c784);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 10px rgba(229, 57, 53, 0.3));
+            }
+            to {
+                filter: drop-shadow(0 0 20px rgba(229, 57, 53, 0.6));
+            }
+        }
+        
+        .services-header p {
+            font-size: 1.3rem;
+            color: #E3F2FD;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        /* Pricing Cards */
+        .pricing-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+            animation: slideInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(229, 57, 53, 0.05), transparent);
+            transition: left 0.8s;
+        }
+        
+        .pricing-card:hover::before {
+            left: 100%;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(229, 57, 53, 0.3);
+        }
+        
+        .pricing-card.featured {
+            border: 2px solid rgba(229, 57, 53, 0.5);
+            background: rgba(229, 57, 53, 0.05);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: translateY(-15px) scale(1.05);
+        }
+        
+        .plan-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #e53935, #ef5350);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .plan-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #e53935, #ef5350);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 10px 30px rgba(229, 57, 53, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover .plan-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(229, 57, 53, 0.4);
+        }
+        
+        .plan-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #e53935, #ffab91);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #e53935;
+            margin-bottom: 10px;
+        }
+        
+        .plan-price .currency {
+            font-size: 1.5rem;
+            vertical-align: top;
+        }
+        
+        .plan-duration {
+            color: #81c784;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+        
+        .plan-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            color: #E3F2FD;
+        }
+        
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .plan-features li i {
+            color: #81c784;
+            margin-right: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .plan-features .highlight {
+            color: #e53935;
+            font-weight: 600;
+        }
+        
+        .select-plan-btn {
+            background: linear-gradient(135deg, #e53935, #ef5350);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .select-plan-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.4s;
+        }
+        
+        .select-plan-btn:hover::before {
+            left: 100%;
+        }
+        
+        .select-plan-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(229, 57, 53, 0.4);
+        }
+        
+        .select-plan-btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .select-plan-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Custom Orders Section */
+        .custom-orders {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            padding: 60px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 60px;
+            text-align: center;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both;
+        }
+        
+        .custom-orders h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #e53935, #ffab91);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .custom-orders p {
+            font-size: 1.2rem;
+            color: #E3F2FD;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-custom-btn {
+            background: linear-gradient(135deg, #81c784, #66bb6a);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .contact-custom-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(129, 199, 132, 0.4);
+        }
+        
+        /* Payment Methods */
+        .payment-section {
+            margin-bottom: 60px;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.9s both;
+        }
+        
+        .payment-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #e53935, #ffab91);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .payment-method {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 25px 35px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .payment-method:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .payment-method img {
+            height: 30px;
+            width: auto;
+        }
+        
+        .payment-method .payment-text {
+            font-weight: 600;
+            color: #E3F2FD;
+        }
+        
+        .payment-method i {
+            font-size: 1.8rem;
+            color: #81c784;
+        }
+        
+        /* Guarantee Section */
+        .guarantee-section {
+            background: rgba(129, 199, 132, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(129, 199, 132, 0.2);
+            text-align: center;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 1.2s both;
+        }
+        
+        .guarantee-section h3 {
+            font-size: 1.8rem;
+            color: #81c784;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .guarantee-section i {
+            font-size: 2rem;
+        }
+        
+        .guarantee-section p {
+            color: #E3F2FD;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* ---------------------------
+           Responsive Design
+           --------------------------- */
+        @media (max-width: 992px) {
+            .pricing-container {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 30px;
+            }
+            
+            .services-header h1 {
+                font-size: 2.8rem;
+            }
+            
+            .payment-methods {
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 30px 0;
+                border-radius: 0 0 20px 20px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+                gap: 0;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .pricing-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-15px) scale(1);
+            }
+            
+            .services-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .payment-methods {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .custom-orders, .guarantee-section {
+                padding: 40px 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .pricing-card {
+                padding: 30px 25px;
+            }
+            
+            .services-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .plan-price {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="logo">
+                <div class="logo-icon">G</div>
+                <div class="logo-text">Geo<span style="color: #81c784;">Phoenix</span></div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="#services" class="active">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </header>
+        
+        <!-- Services Section -->
+        <div class="services-section">
+            <!-- Services Header -->
+            <div class="services-header">
+                <h1>Services & Pricing</h1>
+                <p>Choose the perfect package for your geospatial analysis and marine research needs. Professional solutions with guaranteed quality and timely delivery.</p>
+            </div>
+            
+            <!-- Pricing Cards -->
+            <div class="pricing-container">
+                <!-- Starter Package -->
+                <div class="pricing-card">
+                    <div class="plan-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="plan-name">Starter</h3>
+                    <div class="plan-price">
+                        <span class="currency">$</span>10
+                    </div>
+                    <div class="plan-duration">Perfect for small projects</div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i>Basic GIS Analysis</li>
+                        <li><i class="fas fa-check"></i>Simple Data Visualization</li>
+                        <li><i class="fas fa-check"></i>1 Map Creation</li>
+                        <li><i class="fas fa-check"></i><span class="highlight">Unlimited Revisions</span></li>
+                        <li><i class="fas fa-check"></i><span class="highlight">2 Days Delivery</span></li>
+                        <li><i class="fas fa-check"></i>Email Support</li>
+                        <li><i class="fas fa-check"></i>Source Files Included</li>
+                    </ul>
+                    <button class="select-plan-btn" onclick="selectPackage('starter')">
+                        Select Starter Plan
+                    </button>
+                </div>
+                
+                <!-- Intermediate Package -->
+                <div class="pricing-card featured">
+                    <div class="plan-badge">Most Popular</div>
+                    <div class="plan-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="plan-name">Intermediate</h3>
+                    <div class="plan-price">
+                        <span class="currency">$</span>20
+                    </div>
+                    <div class="plan-duration">Best value for professionals</div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i>Advanced GIS Analysis</li>
+                        <li><i class="fas fa-check"></i>Interactive Visualizations</li>
+                        <li><i class="fas fa-check"></i>3 Maps + 1 Dashboard</li>
+                        <li><i class="fas fa-check"></i>Statistical Analysis</li>
+                        <li><i class="fas fa-check"></i><span class="highlight">Unlimited Revisions</span></li>
+                        <li><i class="fas fa-check"></i><span class="highlight">3 Days Delivery</span></li>
+                        <li><i class="fas fa-check"></i>Priority Support</li>
+                        <li><i class="fas fa-check"></i>Detailed Report</li>
+                    </ul>
+                    <button class="select-plan-btn" onclick="selectPackage('intermediate')">
+                        Select Intermediate Plan
+                    </button>
+                </div>
+                
+                <!-- Pro Package -->
+                <div class="pricing-card">
+                    <div class="plan-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3 class="plan-name">Pro</h3>
+                    <div class="plan-price">
+                        <span class="currency">$</span>30
+                    </div>
+                    <div class="plan-duration">Complete solution package</div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i>Complex Spatial Analysis</li>
+                        <li><i class="fas fa-check"></i>Multiple Interactive Dashboards</li>
+                        <li><i class="fas fa-check"></i>5 Maps + 2 Dashboards</li>
+                        <li><i class="fas fa-check"></i>Advanced Modeling</li>
+                        <li><i class="fas fa-check"></i>Machine Learning Integration</li>
+                        <li><i class="fas fa-check"></i><span class="highlight">Unlimited Revisions</span></li>
+                        <li><i class="fas fa-check"></i><span class="highlight">5 Days Delivery</span></li>
+                        <li><i class="fas fa-check"></i>24/7 Priority Support</li>
+                        <li><i class="fas fa-check"></i>Comprehensive Documentation</li>
+                    </ul>
+                    <button class="select-plan-btn" onclick="selectPackage('pro')">
+                        Select Pro Plan
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Custom Orders Section -->
+            <div class="custom-orders">
+                <h2>Need Something Custom?</h2>
+                <p>Every project is unique. If none of our standard packages fit your specific requirements, let's discuss a custom solution tailored to your needs.</p>
+                <a href="contact.html" class="contact-custom-btn">
+                    <i class="fas fa-comments"></i>
+                    Get Custom Quote
+                </a>
+            </div>
+            
+            <!-- Payment Methods -->
+            <div class="payment-section">
+                <h2>Accepted Payment Methods</h2>
+                <div class="payment-methods">
+                    <div class="payment-method">
+                        <i class="fab fa-paypal"></i>
+                        <span class="payment-text">PayPal</span>
+                    </div>
+                    <div class="payment-method">
+                        <i class="fas fa-credit-card"></i>
+                        <span class="payment-text">Payoneer</span>
+                    </div>
+                    <div class="payment-method">
+                        <i class="fas fa-university"></i>
+                        <span class="payment-text">Bank Transfer</span>
+                    </div>
+                </div>
+                
+                <!-- Money Back Guarantee -->
+                <div class="guarantee-section">
+                    <h3>
+                        <i class="fas fa-shield-alt"></i>
+                        100% Money Back Guarantee
+                    </h3>
+                    <p>
+                        Your satisfaction is our priority. If you're not completely satisfied with the delivered work, we offer a full refund within 7 days of project completion. No questions asked.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script>
+        // Enhanced Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.style.transform = navMenu.classList.contains('active') 
+                ? 'rotate(90deg)' : 'rotate(0deg)';
+        });
+
+        // Package Selection Function
+        function selectPackage(packageType) {
+            // Add animation effect to the clicked button
+            event.target.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                event.target.style.transform = 'scale(1)';
+            }, 150);
+            
+            // You can integrate this with your booking/payment system
+            alert(`You selected the ${packageType.charAt(0).toUpperCase() + packageType.slice(1)} package! Redirecting to booking...`);
+            
+            // Example: Redirect to contact form with package pre-selected
+            // window.location.href = `contact.html?package=${packageType}`;
+        }
+
+        // Smooth animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
