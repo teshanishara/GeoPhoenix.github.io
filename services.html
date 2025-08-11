@@ -4,12 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GeoPhoenix - Services & Pricing</title>
-    
-    <!-- PayPal SDK - Part 1 -->
-    <script 
-        src="https://www.paypal.com/sdk/js?client-id=BAAeDLdHrjy1J_6AkiXgItDZmrJdiitN3xzkHWG8SJAcoi-4htWJRiIFUg_R64c3d_OWEk4Tm65UmTnI3k&components=hosted-buttons&disable-funding=venmo&currency=USD">
-    </script>
-    
     <style>
         /* ---------------------------
            Base Styles & Global Settings
@@ -393,13 +387,6 @@
             font-weight: 600;
         }
         
-        .payment-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
-        }
-        
         .select-plan-btn {
             background: linear-gradient(135deg, #e53935, #ef5350);
             color: white;
@@ -413,7 +400,6 @@
             position: relative;
             overflow: hidden;
             width: 100%;
-            margin-bottom: 15px;
         }
         
         .select-plan-btn::before {
@@ -444,59 +430,6 @@
         .select-plan-btn.secondary:hover {
             background: rgba(255, 255, 255, 0.2);
             box-shadow: 0 15px 40px rgba(255, 255, 255, 0.1);
-        }
-        
-        /* PayPal Container Styling */
-        .paypal-container {
-            width: 100%;
-            margin-top: 10px;
-        }
-        
-        .payment-divider {
-            display: flex;
-            align-items: center;
-            margin: 20px 0 15px 0;
-            color: #81c784;
-            font-size: 0.9rem;
-        }
-        
-        .payment-divider::before,
-        .payment-divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: rgba(129, 199, 132, 0.3);
-        }
-        
-        .payment-divider span {
-            margin: 0 15px;
-            font-weight: 600;
-        }
-        
-        /* PayPal Section - Hidden by default */
-        .paypal-section {
-            display: none;
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            border: 1px solid rgba(129, 199, 132, 0.2);
-            animation: slideDown 0.3s ease-out;
-        }
-        
-        .paypal-section.active {
-            display: block;
-        }
-        
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
         
         /* Custom Orders Section */
@@ -777,18 +710,9 @@
                         <li><i class="fas fa-check"></i>Email Support</li>
                         <li><i class="fas fa-check"></i>Source Files Included</li>
                     </ul>
-                    <div class="payment-buttons">
-                        <button class="select-plan-btn" onclick="togglePayPal('starter')">
-                            Select Starter Plan
-                        </button>
-                        <!-- PayPal Section for Starter Package -->
-                        <div id="paypal-section-starter" class="paypal-section">
-                            <div class="payment-divider">
-                                <span>Pay securely with PayPal</span>
-                            </div>
-                            <div id="paypal-container-AC85DC76DKN8E" class="paypal-container"></div>
-                        </div>
-                    </div>
+                    <button class="select-plan-btn" onclick="selectPackage('starter')">
+                        Select Starter Plan
+                    </button>
                 </div>
                 
                 <!-- Intermediate Package -->
@@ -812,11 +736,9 @@
                         <li><i class="fas fa-check"></i>Priority Support</li>
                         <li><i class="fas fa-check"></i>Detailed Report</li>
                     </ul>
-                    <div class="payment-buttons">
-                        <button class="select-plan-btn" onclick="selectPackage('intermediate')">
-                            Select Intermediate Plan
-                        </button>
-                    </div>
+                    <button class="select-plan-btn" onclick="selectPackage('intermediate')">
+                        Select Intermediate Plan
+                    </button>
                 </div>
                 
                 <!-- Pro Package -->
@@ -840,13 +762,83 @@
                         <li><i class="fas fa-check"></i>24/7 Priority Support</li>
                         <li><i class="fas fa-check"></i>Comprehensive Documentation</li>
                     </ul>
-                    <div class="payment-buttons">
-                        <button class="select-plan-btn" onclick="selectPackage('pro')">
-                            <i class="fas fa-envelope"></i> Contact for Pro
-                        </button>
-                        <div class="payment-divider">
-                            <span>or pay instantly with</span>
-                        </div>
-                        <!-- PayPal Button Placeholder for Pro Package -->
-                        <div id="paypal-container-pro" class="paypal-container">
-                            <div style="background: rgba(255, 255, 255, 0
+                    <button class="select-plan-btn" onclick="selectPackage('pro')">
+                        Select Pro Plan
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Custom Orders Section -->
+            <div class="custom-orders">
+                <h2>Need Something Custom?</h2>
+                <p>Every project is unique. If none of our standard packages fit your specific requirements, let's discuss a custom solution tailored to your needs.</p>
+                <a href="contact.html" class="contact-custom-btn">
+                    <i class="fas fa-comments"></i>
+                    Get Custom Quote
+                </a>
+            </div>
+            
+            <!-- Payment Methods -->
+            <div class="payment-section">
+                <h2>Accepted Payment Methods</h2>
+                <div class="payment-methods">
+                    <div class="payment-method">
+                        <i class="fab fa-paypal"></i>
+                        <span class="payment-text">PayPal</span>
+                    </div>
+                    <div class="payment-method">
+                        <i class="fas fa-credit-card"></i>
+                        <span class="payment-text">Payoneer</span>
+                    </div>
+                    <div class="payment-method">
+                        <i class="fas fa-university"></i>
+                        <span class="payment-text">Bank Transfer</span>
+                    </div>
+                </div>
+                
+                <!-- Money Back Guarantee -->
+                <div class="guarantee-section">
+                    <h3>
+                        <i class="fas fa-shield-alt"></i>
+                        100% Money Back Guarantee
+                    </h3>
+                    <p>
+                        Your satisfaction is our priority. If you're not completely satisfied with the delivered work, we offer a full refund within 7 days of project completion. No questions asked.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script>
+        // Enhanced Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.style.transform = navMenu.classList.contains('active') 
+                ? 'rotate(90deg)' : 'rotate(0deg)';
+        });
+
+        // Package Selection Function
+        function selectPackage(packageType) {
+            // Add animation effect to the clicked button
+            event.target.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                event.target.style.transform = 'scale(1)';
+            }, 150);
+            
+            // You can integrate this with your booking/payment system
+            alert(`You selected the ${packageType.charAt(0).toUpperCase() + packageType.slice(1)} package! Redirecting to booking...`);
+            
+            // Example: Redirect to contact form with package pre-selected
+            // window.location.href = `contact.html?package=${packageType}`;
+        }
+
+        // Smooth animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
