@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GeoPhoenix - Services & Pricing</title>
     <style>
+        <script 
+          src="https://www.paypal.com/sdk/js?client-id=BAAeDLdHrjy1J_6AkiXgItDZmrJdiitN3xzkHWG8SJAcoi-4htWJRiIFUg_R64c3d_OWEk4Tm65UmTnI3k&components=hosted-buttons&disable-funding=venmo&currency=USD">
+        </script>
         /* ---------------------------
            Base Styles & Global Settings
            --------------------------- */
@@ -710,9 +713,18 @@
                         <li><i class="fas fa-check"></i>Email Support</li>
                         <li><i class="fas fa-check"></i>Source Files Included</li>
                     </ul>
-                    <button class="select-plan-btn" onclick="selectPackage('starter')">
-                        Select Starter Plan
-                    </button>
+                   <div class="payment-buttons">
+                        <button class="select-plan-btn" onclick="togglePayPal('starter')">
+                            Select Starter Plan
+                        </button>
+                        <!-- PayPal Section for Starter Package -->
+                        <div id="paypal-section-starter" class="paypal-section">
+                            <div class="payment-divider">
+                                <span>Pay securely with PayPal</span>
+                            </div>
+                            <div id="paypal-container-AC85DC76DKN8E" class="paypal-container"></div>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Intermediate Package -->
