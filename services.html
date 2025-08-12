@@ -783,13 +783,26 @@
                     <button class="select-plan-btn" onclick="togglePayPal('starter')">
                         Select Starter Plan
                     </button>
-                    <!-- PayPal Section for Starter Package -->
-                    <div id="paypal-section-starter" class="paypal-section">
-                        <div class="payment-divider">
-                            <span>Pay securely with PayPal</span>
-                        </div>
-                        <div id="paypal-container-AC85DC76DKN8E" class="paypal-container"></div>
-                    </div>
+                     <div id="paypal-button-container"></div>
+
+<script>
+paypal.Buttons({
+    createOrder: function(data, actions) {
+        return actions.order.create({
+            purchase_units: [{
+                amount: { value: '10.00' } // Starter plan price
+            }]
+        });
+    },
+    onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+            alert('Payment completed by ' + details.payer.name.given_name);
+            // Redirect or trigger your thank-you page here
+        });
+    }
+}).render('#paypal-button-container');
+</script>
+
                 </div>
                 
                 <!-- Intermediate Package -->
