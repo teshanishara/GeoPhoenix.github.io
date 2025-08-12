@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GeoPhoenix - Services & Pricing</title>
     
-    <!-- PayPal SDK - Part 1 -->
-    <script 
-        src="https://www.paypal.com/sdk/js?client-id=BAAeDLdHrjy1J_6AkiXgItDZmrJdiitN3xzkHWG8SJAcoi-4htWJRiIFUg_R64c3d_OWEk4Tm65UmTnI3k&components=hosted-buttons&disable-funding=venmo&currency=USD">
-    </script>
-    
+  
     <!-- Font Awesome for Icons -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
     
@@ -780,29 +776,9 @@
                         <li><i class="fas fa-check"></i>Email Support</li>
                         <li><i class="fas fa-check"></i>Source Files Included</li>
                     </ul>
-                    <button class="select-plan-btn" onclick="togglePayPal('starter')">
+                    <button class="select-plan-btn" onclick="window.location.href='https://www.paypal.com/ncp/payment/8RQ5BQLZWX584">
                         Select Starter Plan
                     </button>
-                     <div id="paypal-button-container"></div>
-
-<script>
-paypal.Buttons({
-    createOrder: function(data, actions) {
-        return actions.order.create({
-            purchase_units: [{
-                amount: { value: '10.00' } // Starter plan price
-            }]
-        });
-    },
-    onApprove: function(data, actions) {
-        return actions.order.capture().then(function(details) {
-            alert('Payment completed by ' + details.payer.name.given_name);
-            // Redirect or trigger your thank-you page here
-        });
-    }
-}).render('#paypal-button-container');
-</script>
-
                 </div>
                 
                 <!-- Intermediate Package -->
